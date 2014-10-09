@@ -51,6 +51,9 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  # Add Factory Girl Methods
+  config.include FactoryGirl::Syntax::Methods
+
   # Add Devsie Test Helpers
   config.include Devise::TestHelpers, type: :controller
 end
