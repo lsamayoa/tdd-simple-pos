@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
 
+  resources :employees
+
+  get 'sales/index'
+
+  get 'sales/show'
+
+  get 'sales/edit'
+
+  get 'sales/new'
+
+  get 'sales/create'
+
+  get 'sales/update'
+
+  get 'sales/destroy'
+
   resources :clients
 
   devise_for :users

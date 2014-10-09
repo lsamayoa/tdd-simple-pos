@@ -5,7 +5,7 @@ class Sale < ActiveRecord::Base
   validates_length_of :sale_details, minimum: 1
 
   belongs_to :client
-  belongs_to :seller, class_name: 'User'
+  belongs_to :seller, class_name: 'Employee'
   has_many :sale_details
 
   before_validation :calculate_total

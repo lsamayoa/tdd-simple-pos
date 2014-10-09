@@ -1,4 +1,4 @@
-class SalesService
+module SalesService
   def self.sell(seller, client, sale_details)
     ActiveRecord::Base.transaction do
       sale = Sale.new

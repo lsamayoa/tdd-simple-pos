@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :sale do
     client { FactoryGirl.create(:client) }
-    seller { FactoryGirl.create(:user) }
+    seller { FactoryGirl.create(:employee) }
     sale_details { [FactoryGirl.create(:sale_detail)] }
 
     factory :sale_without_client do

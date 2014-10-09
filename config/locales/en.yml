@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  parameter_missing: "%{param} is missing."
   pundit:
     client_policy:
       show?: 'You are not authorized to access that client.'
