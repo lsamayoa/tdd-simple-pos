@@ -130,11 +130,11 @@ RSpec.describe EmployeesController, :type => :controller do
         expect(assigns(:employee)).to eq(employee)
       end
 
-      it "re-renders the 'edit' template" do
-        employee = create(:employee)
-        put :update, {:id => employee.to_param, :employee => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
+      # it "re-renders the 'edit' template" do
+      #   employee = create(:employee)
+      #   put :update, {:id => employee.to_param, :employee => invalid_attributes}, valid_session
+      #   expect(response).to render_template("edit")
+      # end
     end
   end
 
