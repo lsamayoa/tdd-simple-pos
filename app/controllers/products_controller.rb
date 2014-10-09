@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_and_authorize_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = policy_scope(Product).all
@@ -22,7 +21,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.create(product_params)
-
     respond_with(@product)
   end
 
@@ -37,15 +35,20 @@ class ProductsController < ApplicationController
   end
 
   private
+    def set_and_authorize_product
+      set_product
+      authorize_product
+    end
+
+    def authorize_product
+      authorize @product
+    end
+
     def set_product
-      @product = policy_scope(Product).find(params[:id])
+      @product = Product.find(params[:id])
     end
 
     def product_params
       params.require(:product).permit(:name, :description, :price)
-    end
-
-    def record_not_found
-      head 404
     end
 end

@@ -30,27 +30,25 @@ RSpec.describe ProductsController, :type => :controller do
     describe "GET index" do
       it "assigns current logged in user's products as @products" do
         user_product =  create_logged_user_product
-        extranger_product = FactoryGirl.create(:owned_product)
+        extranger_product = create(:owned_product)
         get :index, {}, valid_session
         expect(assigns(:products)).to eq([user_product])
       end
     end
 
     describe "GET show" do
-      describe "does not own the product" do
-        it "returns not found response if user is trying to access products out of his scope" do
-          product = FactoryGirl.create(:owned_product)
+      it "should not show products that aren't owned by the logged in user" do
+        product = create(:owned_product)
+        bypass_rescue
+        expect{
           get :show, {:id => product.to_param}, valid_session
-          expect(response).to have_http_status(:not_found)
-        end
+        }.to raise_error(Pundit::NotAuthorizedError)
       end
 
-      describe "owns the product" do
-        it "assigns the requested product as @product" do
-          product = create_logged_user_product
-          get :show, {:id => product.to_param}, valid_session
-          expect(assigns(:product)).to eq(product)
-        end  
+      it "should assign the requested product as @product" do
+        product = create_logged_user_product
+        get :show, {:id => product.to_param}, valid_session
+        expect(assigns(:product)).to eq(product)
       end
     end
 
