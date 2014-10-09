@@ -49,9 +49,10 @@ gem 'chunky_png'
 
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'factory_girl_rails'
+  gem 'rspec-rails' # RSpec instead of TestUnit
+  gem 'capybara' # Integration testing
+  gem 'factory_girl_rails' # Maintainable Fixtures
+  gem "codeclimate-test-reporter", require: nil # Code coverage metrics
 end
 
 # Use ActiveModel has_secure_password
