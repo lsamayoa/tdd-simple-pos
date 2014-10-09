@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    user_owns_record
   end
 
   def show?
@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    user_owns_record
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    user_owns_record
   end
 
   def edit?
@@ -31,7 +31,11 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    user_owns_record
+  end
+
+  def user_owns_record
+    record.user_id == user.id
   end
 
   def scope
@@ -47,7 +51,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope
+      scope.where(user_id: user.id)
     end
   end
 end
