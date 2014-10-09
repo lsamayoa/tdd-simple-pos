@@ -167,6 +167,14 @@ RSpec.describe ClientsController, :type => :controller do
     end
 
     describe "DELETE destroy" do
+      it "should not delete clients if the logged user does not own them" do
+        client = create(:client)
+        bypass_rescue
+        expect {
+          delete :destroy, {:id => client.to_param}, valid_session
+        }.to raise_error(Pundit::NotAuthorizedError)
+      end
+
       it "destroys the requested client" do
         client = create(:client, user: @user)
         expect {

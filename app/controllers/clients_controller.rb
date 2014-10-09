@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_and_authorize_client, only: [:show, :edit, :update, :destroy]
 
   def index
     @clients = policy_scope(Client).all
@@ -28,7 +28,6 @@ class ClientsController < ApplicationController
   end
 
   def update
-    authorize @client
     @client.update(client_params)
     respond_with(@client)
   end
@@ -39,6 +38,15 @@ class ClientsController < ApplicationController
   end
 
   private
+    def set_and_authorize_client
+      set_client
+      authorize_client
+    end
+
+    def authorize_client
+      authorize @client
+    end
+
     def set_client
       @client = Client.find(params[:id])
     end
