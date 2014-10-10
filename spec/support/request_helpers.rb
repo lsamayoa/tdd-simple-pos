@@ -2,13 +2,13 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 module RequestHelpers
-  def create_logged_in_user
-    user = FactoryGirl.create(:user)
-    login(user)
-    user
+  def user
+    @user
   end
 
-  def login(user)
-    login_as user, scope: :user
+  def login
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @user = FactoryGirl.create(:user)
+    sign_in @user
   end
 end

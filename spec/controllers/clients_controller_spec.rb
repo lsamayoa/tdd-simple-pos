@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/request_helpers'
 
 RSpec.describe ClientsController, :type => :controller do
 
@@ -18,13 +19,10 @@ RSpec.describe ClientsController, :type => :controller do
   # ClientsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "Authenticated" do
+  context "Authenticated" do
+    include RequestHelpers
 
-    before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      @user = create(:user)
-      sign_in @user
-    end
+    before(:each) { login }
 
     describe "GET index" do
       it "assigns all logged user clients as @clients" do
@@ -52,7 +50,7 @@ RSpec.describe ClientsController, :type => :controller do
         bypass_rescue
         expect{
           get :show, {:id => client.to_param}, valid_session
-        }.to raise_error(Pundit::NotAuthorizedError)
+        }.to raise_error Pundit::NotAuthorizedError
       end
     end
 
@@ -70,14 +68,13 @@ RSpec.describe ClientsController, :type => :controller do
         expect(assigns(:client)).to eq(client)
       end
 
-      it "should redirect to clients if client do not belong to the logged user" do
+      it "should not allow to edit other user's clients" do
         client = create(:client)
         bypass_rescue
         expect{
           get :edit, {:id => client.to_param}, valid_session
-        }.to raise_error(Pundit::NotAuthorizedError)
+        }.to raise_error Pundit::NotAuthorizedError
       end
-
     end
 
     describe "POST create" do

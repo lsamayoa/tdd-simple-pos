@@ -1,8 +1,9 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_and_authorize_employee, only: [:show, :edit, :update, :destroy]
 
   def index
-    @employees = Employee.all
+    @employees = policy_scope(Employee).all
     respond_with(@employees)
   end
 
@@ -35,6 +36,11 @@ class EmployeesController < ApplicationController
   end
 
   private
+    def set_and_authorize_employee
+      set_employee
+      authorize @employee
+    end
+
     def set_employee
       @employee = Employee.find(params[:id])
     end
