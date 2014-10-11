@@ -1,11 +1,6 @@
-= simple_form_for(@employee) do |f|
+= simple_form_for @employee do |f|
   = f.error_notification
-
-  .form-inputs
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :salary
-    = f.association :user
-
-  .form-actions
-    = f.button :submit
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :salary
+  = f.button :submit

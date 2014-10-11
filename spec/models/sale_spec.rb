@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Sale, :type => :model do  
+RSpec.describe Sale, :type => :model do
 
   describe "Validations" do
     it "should not allow to create a sale without a client" do

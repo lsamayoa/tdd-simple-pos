@@ -30,6 +30,8 @@ GEM
     arel (5.0.1.20140414130214)
     barby (0.6.1)
     bcrypt (3.1.7)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     capybara (2.4.3)
       mime-types (>= 1.16)
@@ -140,6 +142,9 @@ GEM
       rdoc (~> 4.0)
     simple-navigation (3.13.0)
       activesupport (>= 2.3.2)
+    simple-navigation-bootstrap (1.0.0)
+      railties (>= 3.1)
+      simple-navigation (>= 3.7.0)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -179,6 +184,7 @@ PLATFORMS
 
 DEPENDENCIES
   barby
+  bootstrap-sass (~> 3.2.0)
   capybara
   chunky_png
   codeclimate-test-reporter
@@ -194,6 +200,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   simple-navigation
+  simple-navigation-bootstrap
   simple_form
   spring
   sqlite3

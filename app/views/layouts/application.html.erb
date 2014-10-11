@@ -7,8 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render_navigation %>
-<%= yield %>
+<%= render_navigation renderer: :bootstrap %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

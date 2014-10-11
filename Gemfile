@@ -47,6 +47,11 @@ gem 'barby'
 # Simple png generation lib, used to generate barcodes pngs
 gem 'chunky_png'
 
+# Bootstrap style
+gem 'bootstrap-sass', '~> 3.2.0'
+
+gem 'simple-navigation-bootstrap'
+
 
 group :development, :test do
   gem 'rspec-rails' # RSpec instead of TestUnit
