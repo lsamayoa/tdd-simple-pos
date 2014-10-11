@@ -20,8 +20,7 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    @employee = current_user.employees.build(employee_params)
-    @employee.save
+    @employee = current_user.employees.create(employee_params)
     respond_with(@employee)
   end
 
@@ -37,12 +36,8 @@ class EmployeesController < ApplicationController
 
   private
     def set_and_authorize_employee
-      set_employee
-      authorize @employee
-    end
-
-    def set_employee
       @employee = Employee.find(params[:id])
+      authorize @employee
     end
 
     def employee_params

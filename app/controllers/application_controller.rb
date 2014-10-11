@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   private
     def user_not_authorized(exception)
       policy_name = exception.policy.class.to_s.underscore
-
       flash[:error] = I18n.t "pundit.#{policy_name}.#{exception.query}",
         default: 'You cannot perform this action.'
       redirect_to_last_visited_path
