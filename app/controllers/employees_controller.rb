@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    @employee = Employee.new(employee_params)
+    @employee = current_user.employees.build(employee_params)
     @employee.save
     respond_with(@employee)
   end

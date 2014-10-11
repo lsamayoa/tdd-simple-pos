@@ -109,6 +109,11 @@ RSpec.describe EmployeesController, :type => :controller do
           expect(assigns(:employee)).to be_persisted
         end
 
+        it "should associate the new employee to the logged user" do
+          post :create, {:employee => valid_attributes}, valid_session
+          expect(assigns(:employee).user).to eq @user
+        end
+
         it "redirects to the created employee" do
           post :create, {:employee => valid_attributes}, valid_session
           expect(response).to redirect_to Employee.last
