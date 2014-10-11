@@ -1,10 +1,4 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title Editing employee 
-  .panel-body
-
-= render 'form'
-
+= render partial: 'employees/form', layout: 'layouts/panel_layout', locals: { title: 'Edit Employee' }
 = link_to 'Show', @employee
 \|
 = link_to 'Back', employees_path

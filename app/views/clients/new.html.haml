@@ -1,5 +1,3 @@
-%h1 New client
-
-= render 'form'
+= render partial: 'clients/form', layout: 'layouts/panel_layout', locals: { title: 'New Client' }
 
 = link_to 'Back', clients_path

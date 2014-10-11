@@ -1,6 +1,4 @@
-%h1 Editing client
-
-= render 'form'
+= render partial: 'clients/form', layout: 'layouts/panel_layout', locals: { title: 'Edit Client' }
 
 = link_to 'Show', @client
 \|

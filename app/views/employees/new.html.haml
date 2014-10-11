@@ -1,6 +1,2 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title New Employee 
-  .panel-body
-    = render 'form'
-    = link_to 'Back', employees_path
+= render partial: 'employees/form', layout: 'layouts/panel_layout', locals: { title: 'New Employee' }
+= link_to 'Back', employees_path

@@ -1,6 +1,4 @@
-%h1 Editing product
-
-= render 'form'
+= render partial: 'products/form', layout: 'layouts/panel_layout', locals: { title: 'Edit Product' }
 
 = link_to 'Show', @product
 \|
